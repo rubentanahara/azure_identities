@@ -36,7 +36,7 @@ app.MapGet("/", () => new {
     Message = "Hello World from Azure Identities API!", 
     Timestamp = DateTime.UtcNow,
     Environment = app.Environment.EnvironmentName,
-    Version = "2.0.0-federated"
+    Version = "3.0.0-federated"
 })
 .WithName("HelloWorld")
 
