@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_WEBAPP_NAME: webapp-azure-identities-api
+  AZURE_WEBAPP_NAME: webapp-azure-identities-api-63312
   AZURE_WEBAPP_PACKAGE_PATH: './publish'
   DOTNET_VERSION: '8.0'
 
