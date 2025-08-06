@@ -103,7 +103,7 @@ graph LR
 
 ### **📋 Setup Steps - Azure CLI:**
 
-```bash
+   ```bash
 # 1. Create Azure Resources
 az group create --name rg-app-001 --location eastus
 az appservice plan create --name asp-app-001 --resource-group rg-app-001 --sku F1
@@ -206,7 +206,7 @@ graph LR
 
 ### **📋 Setup Steps - Azure CLI:**
 
-```bash
+   ```bash
 # 1. Create Azure Resources (same as Method 1)
 az group create --name rg-app-001 --location eastus
 az appservice plan create --name asp-app-001 --resource-group rg-app-001 --sku F1
@@ -224,14 +224,14 @@ az ad sp create-for-rbac \
 
 # 4. Note the clientId from the output, then create federated credential
 APP_ID="YOUR_CLIENT_ID_FROM_STEP_3"
-
-az ad app federated-credential create --id $APP_ID --parameters '{
+   
+   az ad app federated-credential create --id $APP_ID --parameters '{
   "name": "github-actions-main",
-  "issuer": "https://token.actions.githubusercontent.com",
+     "issuer": "https://token.actions.githubusercontent.com",
   "subject": "repo:YOUR_GITHUB_USERNAME/YOUR_REPO_NAME:ref:refs/heads/main",
   "description": "GitHub Actions federated credential",
-  "audiences": ["api://AzureADTokenExchange"]
-}'
+     "audiences": ["api://AzureADTokenExchange"]
+   }'
 
 # 5. Add these 3 values as GitHub Secrets:
 # AZURE_CLIENT_ID: (clientId from step 3)
@@ -280,9 +280,9 @@ az ad app federated-credential create --id $APP_ID --parameters '{
 5. **Add GitHub Secrets:**
    - Go to GitHub repository → Settings → Secrets and variables → Actions
    - Add these 3 secrets:
-     - `AZURE_CLIENT_ID`: Application (client) ID
-     - `AZURE_TENANT_ID`: Directory (tenant) ID
-     - `AZURE_SUBSCRIPTION_ID`: Subscription ID
+   - `AZURE_CLIENT_ID`: Application (client) ID
+   - `AZURE_TENANT_ID`: Directory (tenant) ID
+   - `AZURE_SUBSCRIPTION_ID`: Subscription ID
 
 ### **📝 GitHub Workflow (Federated Identity):**
 
