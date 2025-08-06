@@ -8,6 +8,7 @@ on:
       - '**.csproj'
       - 'Program.cs'
       - 'appsettings*.json'
+      - 'README.md'
   workflow_dispatch:
 
 env:
