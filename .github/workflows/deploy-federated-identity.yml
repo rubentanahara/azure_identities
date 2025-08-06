@@ -12,13 +12,13 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_WEBAPP_NAME: webapp-azure-identities-api-63312
+  AZURE_WEBAPP_NAME: webapp-app-001
   AZURE_WEBAPP_PACKAGE_PATH: './publish'
   DOTNET_VERSION: '8.0'
 
 permissions:
-  id-token: write
-  contents: read
+  id-token: write # This is required for Federated Identity authentication
+  contents: read # This is required to read the repository contents
 
 jobs:
   build-and-deploy:
@@ -48,15 +48,15 @@ jobs:
     - name: 'Azure Login using Federated Identity'
       uses: azure/login@v1
       with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        client-id: ${{ secrets.AZURE_CLIENT_ID }} # The client ID of the Federated Identity application
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }} # The tenant ID of the Azure AD where the Federated Identity application is registered
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} # The subscription ID where the Azure Web App is hosted
 
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
       with:
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        app-name: ${{ env.AZURE_WEBAPP_NAME }} # The name of the Azure Web App
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }} # The path to the published application package
 
     - name: 'Health Check'
       run: |
