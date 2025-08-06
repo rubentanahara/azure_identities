@@ -132,4 +132,4 @@ To migrate from Publish Profile to Federated Identity:
 
 - [Azure App Service Documentation](https://docs.microsoft.com/en-us/azure/app-service/)
 - [GitHub Actions for Azure](https://docs.microsoft.com/en-us/azure/developer/github/github-actions)
-- [Federated Identity Credentials](https://docs.microsoft.com/en-us/azure/active-directory/develop/workload-identity-federation)
+- [Federated Identity Credentials](https://docs.microsoft.com/en-us/azure/active-directory/develop/workload-identity-federation)# Test deployment
