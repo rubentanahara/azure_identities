@@ -1,8 +1,9 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 // Add CORS for development
 builder.Services.AddCors(options =>
@@ -23,7 +24,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
     app.UseCors(); // Enable CORS in development
 }
 
@@ -37,7 +39,7 @@ app.MapGet("/", () => new {
     Version = "1.0.0"
 })
 .WithName("HelloWorld")
-.WithOpenApi()
+
 .WithSummary("Get welcome message")
 .WithDescription("Returns a hello world message with timestamp and environment info");
 
@@ -50,7 +52,7 @@ app.MapGet("/health", () => new {
     Uptime = DateTime.UtcNow.ToString("o")
 })
 .WithName("HealthCheck")
-.WithOpenApi()
+
 .WithSummary("Health check endpoint")
 .WithDescription("Returns the health status of the API");
 
